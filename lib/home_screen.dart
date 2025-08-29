@@ -1,5 +1,8 @@
 import 'package:demo_app/category_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'features/auth/presentation/viewmodel/auth_viewmodel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -279,6 +282,14 @@ class _HomeScreen extends State<HomeScreen> {
                 category: "Electricity",
                 date: "Yesterday",
                 price: "350.000"
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                final authViewModel = context.read<AuthViewModel>();
+                authViewModel.signOut();
+              },
+              child: Text("Logout"),
             )
           ],
         ),
