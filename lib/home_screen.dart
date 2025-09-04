@@ -1,4 +1,4 @@
-import 'package:demo_app/category_item.dart';
+import 'package:demo_app/components/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

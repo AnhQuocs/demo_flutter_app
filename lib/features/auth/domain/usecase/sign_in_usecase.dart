@@ -7,6 +7,10 @@ class SignInUseCase {
   SignInUseCase(this.repository);
 
   Future<UserModel> call(String email, String password) {
-    return repository.signIn(email, password);
+    try {
+      return repository.signIn(email, password);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

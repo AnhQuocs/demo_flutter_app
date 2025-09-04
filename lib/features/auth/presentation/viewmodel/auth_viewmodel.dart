@@ -3,6 +3,7 @@ import 'package:demo_app/features/auth/domain/usecase/reset_password_usecase.dar
 import 'package:demo_app/features/auth/domain/usecase/sign_in_usecase.dart';
 import 'package:demo_app/features/auth/domain/usecase/sign_out_usecase.dart';
 import 'package:demo_app/features/auth/domain/usecase/sign_up_usecase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 class AuthViewModel extends ChangeNotifier {
@@ -29,14 +30,16 @@ class AuthViewModel extends ChangeNotifier {
   Future<void> signIn(String email, String password) async {
     _loading = true;
     notifyListeners();
+
     try {
       _user = await signInUseCase(email, password);
       _error = null;
     } catch (e) {
-      _error = e.toString();
+      rethrow;
+    } finally {
+      _loading = false;
+      notifyListeners();
     }
-    _loading = false;
-    notifyListeners();
   }
 
   Future<void> signUp(String email, String password) async {

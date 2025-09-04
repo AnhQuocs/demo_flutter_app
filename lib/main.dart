@@ -9,7 +9,7 @@ import 'features/auth/domain/usecase/reset_password_usecase.dart';
 import 'features/auth/domain/usecase/sign_in_usecase.dart';
 import 'features/auth/domain/usecase/sign_out_usecase.dart';
 import 'features/auth/domain/usecase/sign_up_usecase.dart';
-import 'features/auth/presentation/ui/login_page.dart';
+import 'features/auth/presentation/ui/login_screen.dart';
 import 'features/auth/presentation/ui/register_page.dart';
 import 'features/auth/presentation/viewmodel/auth_viewmodel.dart';
 import 'firebase_options.dart';
@@ -55,16 +55,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // // Màn hình mở đầu
-      // initialRoute: '/register',
-      // routes: {
-      //   '/register': (context) => const RegisterPage(),
-      //   '/home': (context) => const HomeScreen(),
-      // },
       home: AuthWrapper(),
       routes: {
         '/register': (context) => const RegisterPage(),
-        '/login': (context) => const LoginPage(),
+        '/login': (context) => const LoginScreen(),
         '/home': (context) => const HomeScreen(),
       },
     );
@@ -89,8 +83,8 @@ class AuthWrapper extends StatelessWidget {
           return const HomeScreen();
         }
 
-        // 👉 Nếu chưa login → sang LoginPage (không quay lại RegisterPage nữa)
-        return const LoginPage();
+        //Nếu chưa login -> sang LoginScreen (ko quay lại RegisterPage)
+        return const LoginScreen();
       },
     );
   }
